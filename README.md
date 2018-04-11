@@ -1,0 +1,1 @@
+# angular-full-app-with-angular-material-angularfire-ngrx
