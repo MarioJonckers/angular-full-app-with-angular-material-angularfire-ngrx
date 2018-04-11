@@ -27,8 +27,14 @@
       <mat-error>Has to be at least 6 characters long.</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Your birthdate" [matDatepicker]="picker">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <input
+        matInput
+        placeholder="Your birthdate"
+        [matDatepicker]="picker"
+        [max]="maxDate">
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <button type="submit" mat-raised-button color="primary">Submit</button>
