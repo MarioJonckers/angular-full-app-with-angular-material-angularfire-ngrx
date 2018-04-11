@@ -8,7 +8,8 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatNativeDateModule, MatSelectModule,
+  MatNativeDateModule, MatProgressSpinnerModule,
+  MatSelectModule,
   MatSidenavModule,
   MatTabsModule,
   MatToolbarModule
@@ -28,7 +29,8 @@ import {
     MatListModule,
     MatTabsModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatButtonModule,
@@ -43,7 +45,8 @@ import {
     MatListModule,
     MatTabsModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule { }
