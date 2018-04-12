@@ -37,7 +37,7 @@ export class AuthService {
     return { ...this.user};
   }
 
-  private isAuth(): boolean {
+  public isAuth(): boolean {
     return this.user != null;
   }
 
