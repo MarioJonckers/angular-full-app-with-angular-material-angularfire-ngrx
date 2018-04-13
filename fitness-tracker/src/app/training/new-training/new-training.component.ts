@@ -1,30 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TrainingService } from '../training.service';
 import { NgForm } from '@angular/forms';
-import { AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import { Exercise } from '../exercise.model';
 
 @Component({
   selector: 'app-new-training',
   templateUrl: './new-training.component.html',
   styleUrls: ['./new-training.component.css']
 })
-export class NewTrainingComponent implements OnInit {
-  private exercises: Observable<any>;
+export class NewTrainingComponent implements OnInit, OnDestroy {
+  private exercises: Exercise[];
+  private exerciseSubscription: Subscription;
 
-  constructor(private trainingService: TrainingService, private db: AngularFirestore) { }
+  constructor(private trainingService: TrainingService) { }
 
-  ngOnInit() {
-    this.exercises = this.db.collection('availableExercises')
-      .snapshotChanges()
-      .map(docArray => {
-        return docArray.map(doc => {
-          return {
-            id: doc.payload.doc.id,
-            ...doc.payload.doc.data()
-          };
-        })
-      });
+  ngOnInit(): void {
+    this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(exercises => this.exercises = exercises);
+    this.trainingService.fetchAvailableExercises();
+  }
+
+  ngOnDestroy(): void {
+    this.exerciseSubscription.unsubscribe();
   }
 
   private onStartTraining(form: NgForm): void {
