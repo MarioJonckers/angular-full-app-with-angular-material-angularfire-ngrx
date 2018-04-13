@@ -37,7 +37,7 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
     }
   }
 
-  private onStartTraining(form: NgForm): void {
+  public onStartTraining(form: NgForm): void {
     this.trainingService.startExercise(form.value.exercise);
   }
 

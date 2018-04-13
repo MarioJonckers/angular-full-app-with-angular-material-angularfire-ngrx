@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Output()
   public sidenavToggle: EventEmitter<void> = new EventEmitter<void>();
   private authSubscription: Subscription;
-  private isAuth = false;
+  public isAuth = false;
 
   constructor(private authService: AuthService) { }
 
@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
-  private onToggleSidenav(): void {
+  public onToggleSidenav(): void {
     this.sidenavToggle.emit();
   }
 
