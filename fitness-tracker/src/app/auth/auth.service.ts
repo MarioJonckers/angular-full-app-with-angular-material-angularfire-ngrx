@@ -8,7 +8,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 @Injectable()
 export class AuthService {
   public authChange: Subject<boolean> = new Subject<boolean>();
-  private user: User;
+  private isAuthenticated = false;
 
   constructor(private router: Router, private afAuth: AngularFireAuth) {}
 
@@ -36,20 +36,17 @@ export class AuthService {
   }
 
   public logout(): void {
-    this.user = null;
+    this.isAuthenticated = false;
     this.authChange.next(false);
     this.router.navigate(['/login']);
   }
 
-  private getUser(): User {
-    return { ...this.user};
-  }
-
   public isAuth(): boolean {
-    return this.user != null;
+    return this.isAuthenticated;
   }
 
   private authSuccessfully(): void {
+    this.isAuthenticated = true;
     this.authChange.next(true);
     this.router.navigate(['/training']);
   }
