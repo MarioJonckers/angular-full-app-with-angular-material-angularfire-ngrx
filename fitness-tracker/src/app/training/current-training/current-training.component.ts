@@ -9,7 +9,7 @@ import { TrainingService } from '../training.service';
   styleUrls: ['./current-training.component.css']
 })
 export class CurrentTrainingComponent implements OnInit {
-  private progress = 0;
+  public progress = 0;
   private timer: number;
 
   constructor(private dialog: MatDialog, private trainingService: TrainingService) { }
@@ -29,7 +29,7 @@ export class CurrentTrainingComponent implements OnInit {
     }, step);
   }
 
-  private onStop(): void {
+  public onStop(): void {
     clearInterval(this.timer);
     const dialogRef = this.dialog.open(StopTrainingComponent, {
       data: {
