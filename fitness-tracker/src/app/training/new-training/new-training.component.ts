@@ -11,9 +11,9 @@ import { UiService } from '../../shared/ui.service';
   styleUrls: ['./new-training.component.css']
 })
 export class NewTrainingComponent implements OnInit, OnDestroy {
-  private exercises: Exercise[];
   private loadingSubscription: Subscription;
   private exerciseSubscription: Subscription;
+  public exercises: Exercise[];
   public isLoading = true;
 
   constructor(private trainingService: TrainingService, private uiService: UiService) { }
@@ -25,7 +25,7 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
     this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(exercises => {
       this.exercises = exercises;
     });
-    this.trainingService.fetchAvailableExercises();
+    this.fetchExercises();
   }
 
   ngOnDestroy(): void {
@@ -37,4 +37,7 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
     this.trainingService.startExercise(form.value.exercise);
   }
 
+  public fetchExercises(): void {
+    this.trainingService.fetchAvailableExercises();
+  }
 }
