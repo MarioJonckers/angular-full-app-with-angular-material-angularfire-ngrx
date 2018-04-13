@@ -1,4 +1,3 @@
-import { User } from './user.model';
 import { AuthData } from './auth-data.model';
 import { Subject } from 'rxjs/Subject';
 import { Injectable } from '@angular/core';
